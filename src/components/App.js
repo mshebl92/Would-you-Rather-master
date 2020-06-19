@@ -34,11 +34,9 @@ class App extends Component {
                                 <Switch>
                                     <ProtectedRoute path='/' exact component={Dashboard}
                                                     isAuthenticated={this.props.authenticated}/>
-                                    <ProtectedRoute path='/question/:id' exact component={connect(mapStateToProps)(QuestionPoll)}
+                                    <ProtectedRoute path='/question/:id/results' exact component={connect(mapStateToProps)(QuestionPoll)}
                                                     isAuthenticated={this.props.authenticated}/>
-                                    <ProtectedRoute path='/question/:id/results'
-                                                    exact component={connect(mapStateToProps)(QuestionPollResults)}
-                                                    isAuthenticated={this.props.authenticated}/>
+
                                     <ProtectedRoute path='/add' exact component={NewQuestion}
                                                     isAuthenticated={this.props.authenticated}/>
                                     <ProtectedRoute path='/leaderboard' exact component={Leaderboard}
@@ -66,4 +64,3 @@ function mapStateToProps({users, login}) {
 }
 
 export default connect(mapStateToProps)(App);
-

@@ -18,13 +18,8 @@ const Question = (props) => {
         return false;
     }
 
-    let viewPollLink = '';
+    let viewPollLink = `/question/${id}/results`;
 
-    if (props.questionsToShow === 'answered') {
-        viewPollLink = `/question/${id}/results`;
-    } else if (props.questionsToShow === 'unanswered') {
-        viewPollLink = `/question/${id}`;
-    }
 
     return (
         <div className='margin-top-10'>

@@ -6,6 +6,7 @@ import PageNotFound from "./PageNotFound";
 
 class QuestionPoll extends Component {
 
+
     state = {
         optionSelected: '',
         answerSubmitted: false
@@ -34,8 +35,24 @@ class QuestionPoll extends Component {
     };
 
     render() {
+      const {question, author, pageNotFound,authedUser} = this.props;
+
+      if (pageNotFound === true) {
+          return <PageNotFound/>;
+      }
+
+      const totalVotes = question.optionOne.votes.length + question.optionTwo.votes.length;
+
+      const AnseredOption = question.optionOne.votes.includes(authedUser)?"OptionOne":null || question.optionTwo.votes.includes(authedUser)?"OptionTwo":null;
+console.log(AnseredOption);
+console.log(author.id);
+console.log(authedUser)
+
+      let optionOneWidth = Math.round((question.optionOne.votes.length / totalVotes) * 100);
+      let optionTwoWidth = Math.round((question.optionTwo.votes.length / totalVotes) * 100);
+
         const {optionSelected, answerSubmitted} = this.state;
-        const {id, question, author, pageNotFound} = this.props;
+        const {id} = this.props;
 
         if (pageNotFound === true) {
             return <PageNotFound/>;
@@ -48,6 +65,7 @@ class QuestionPoll extends Component {
         }
 
         return (
+          !AnseredOption?(
             <div>
                 <div className='projectContainer'>
                     <div className='container'>
@@ -113,11 +131,69 @@ class QuestionPoll extends Component {
                     </div>
                 </div>
             </div>
+          ):(
+            <div>
+                <div className='projectContainer'>
+                    <div className='container'>
+                        <div className='row justify-content-center'>
+                            <div className='col-sm-8'>
+                                <div className='card'>
+                                    <div className='card-header bold'>Added by {author.name}</div>
+                                    <div className='card-body'>
+                                        <div className='container'>
+                                            <div className='row justify-content-center'>
+                                                <div className='col-sm-4 border-right vert-align'>
+                                                    <img src={author.avatarURL}
+                                                         alt={`Avatar of ${author.name}`}
+                                                         className='avatar'/>
+                                                </div>
+                                                <div className='col-sm-8'>
+                                                    <div className='question-info'>
+                                                        <div className='col-sm-12 '>
+                                                            <div className='results-header'>Results:</div>
+                                                            <div>your chosen option is highlighted in green</div>
+                                                            <div className={`card card-poll-results ${(optionSelected === 'optionOne') ? "chosen-answer" : ""}`}>Would you rather {question.optionOne.text}?
+
+                                                                <div className="progress m-progress--sm">
+                                                                    <div className="progress-bar m--bg-success"
+                                                                         style={{ width: optionOneWidth + '%' }}
+                                                                         ></div>
+                                                                </div>
+                                                                <div>
+        <span>{question.optionOne.votes.length} out of {totalVotes} votes. ({optionOneWidth}%)</span>
+                                                                </div>
+
+                                                            </div>
+                                                            <div className={`card card-poll-results ${(optionSelected === 'optionTwo') ? "chosen-answer" : ""}`}>Would you rather {question.optionTwo.text}?
+
+                                                                <div className="progress m-progress--sm">
+                                                                    <div className="progress-bar m--bg-success"
+                                                                         style={{ width: optionTwoWidth + '%' }}
+                                                                    ></div>
+                                                                </div>
+                                                                <div>
+                                                                    <span>{question.optionTwo.votes.length} out of {totalVotes} votes. ({optionTwoWidth}%)</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          )
+
         )
     }
 }
 
-function mapStateToProps({login, questions, users, match}, props) {
+function mapStateToProps({login, questions, users, match,authedUser}, props) {
     const {id} = props.match.params;
 
     let pageNotFound = true;
