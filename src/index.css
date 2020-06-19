@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+ul{
+  list-style: none;
+}
+li{
+  list-style: none;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.App{
+  background-color: #1a1919;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.btn-primary ,.btn-primary:hover,.btn-primary:focus,.btn-primary:active {
+  color: #fff;
+  background-color: #ff8600;
+  border: 0px;
+}
+.Login-header h1{
+font-size: 29px;
+}
+.login-sub-cont{
+  margin:10% auto;
+  min-height: 300px;
+  position: relative;
+  background-color: #fff;
+  border-radius: 6px;
+}
+.Login-header{
+  background-color: #f4f4f4;
+  color: #595959;
+  padding: 15px;
+  text-align: center;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+
+}
+.login-select{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  padding:15px;
+}
+.Navmain-cont{
+  display: flex;
+  justify-content: space-between;
+}
+.Navmain-cont ul{
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+}
+.navbar-expand .navbar-collapse{
+  justify-content: space-between;
+}
+.navbar , .projectContainer{
+  width:100%;
+}
+.navbar-text{
+  margin-right: 25px;;
+}
+.btn-info {
+  color: #fff;
+  background-color: #ff8600;
+  border-color: #ff8600;
+}
+.btn-info:hover {
+  color: #fff;
+  background-color: #525252;
+  border-color: #525252;
+}
+.btn-info:not(:disabled):not(.disabled):active, .btn-info:not(:disabled):not(.disabled).active, .show > .btn-info.dropdown-toggle {
+  color: #fff;
+  background-color: #2d2d2d;
+  border-color: #2d2d2d;
+}
+.container{
+  margin-top:30px;
+}
+img{
+  max-width: 87px;
+  border-radius: 100%;
+}
+.margin-bot-none{
+  margin-bottom: 0px;
+}
+.flex-center-v{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.badge-info{
+  background-color: #ff8600;
+}
+.m--bg-success{
+  background-color: #ff8600;
+}
+.chosen-answer .progress-bar{
+  background-color: green;
+}
